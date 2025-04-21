@@ -48,4 +48,4 @@ assert (
 ), "the number of elements in training and validation set doesn't add up to full number of elements"
 
 print(f"Number of train elements: {train_data.shape[0]}")
-print(f"Number of validation elements: { train_data.shape[0] }")
+print(f"Number of validation elements: { test_data.shape[0] }")
