@@ -49,3 +49,24 @@ assert (
 
 print(f"Number of train elements: {train_data.shape[0]}")
 print(f"Number of validation elements: { test_data.shape[0] }")
+
+block_size = 8
+batch_size = 4
+
+torch.manual_seed(1337)
+def get_batches(split):
+    data = train_data if split == 'train' else test_data
+    idxs=[]
+    idxs = torch.randint(0, len(train_data)-block_size-1, (batch_size,)).tolist()
+    print(idxs)
+
+    xs = torch.stack([data[i:i+block_size] for i in idxs])
+    ys = torch.stack([data[i+1:i+block_size+1] for i in idxs])
+    print(xs)
+    print(ys)
+
+    for i in range(batch_size):
+        for j in range(block_size):
+            print(f"input {xs[i][0:j]} should give {ys[i][j]}")
+
+get_batches('train')
